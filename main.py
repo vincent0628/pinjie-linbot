@@ -38,7 +38,10 @@ def handle_message(event):
     user_id = event.source.user_id
     reply_token = event.reply_token
     message = event.message.text
+    if message == "愛你":
+        message = "愛你一萬年"
     line_bot_api.reply_message(reply_token, TextSendMessage(text = message))
+
 
 import os
 if __name__ == "__main__":
