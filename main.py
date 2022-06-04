@@ -58,7 +58,7 @@ def handle_message(event):
         emoji = [
             {"index": 19, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
             {"index": 22, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": 12, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
+            {"index": 11, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
         ]
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
