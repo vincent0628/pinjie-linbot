@@ -43,11 +43,11 @@ def handle_message(event):
     if message == "愛你":
         text = "愛你一萬年"
     elif message == "你愛我嗎":
-        text = "愛你愛你 愛你一萬年!!!\U00002665\U00002665\U00002665"
+        text = "愛你愛你 愛你一萬年!!!💗💗💗"
     elif message in ["交往", "紀念日", "交往紀念日"]:
         text = "交往紀念日是0722 \n \
-            以下 是 $文森$送你的 五個禮物 \n \
-            1. https://chunjie100.netlify.app/$\n \
+            以下 是 $文森$送你的 五個禮物 $ \n \
+            1. https://chunjie100.netlify.app/ \n \
             2. https://pinjie2020.netlify.app/ \n \
             3. https://pinjie-xmas2020.netlify.app/\n \
             4. https://vincent0628.github.io/pinjie_2021_0722/\n \
@@ -56,7 +56,7 @@ def handle_message(event):
         emoji = [
             {"index": 22, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
             {"index": 25, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": 75, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "047"},
+            {"index": 35, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
         ]
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
