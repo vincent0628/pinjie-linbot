@@ -59,7 +59,7 @@ def handle_message(event):
             {"index": 75, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "047"},
         ]
 
-    line_bot_api.reply_message(reply_token, TextSendMessage(text=text), emojis=emoji)
+    line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
 
 
 if __name__ == "__main__":
