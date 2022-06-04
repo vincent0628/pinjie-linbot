@@ -52,13 +52,10 @@ def handle_message(event):
             4. https://vincent0628.github.io/pinjie_2021_0722/\n \
             5. https://vincent0628.github.io/pinjie_2022_0214/\n \
             "
-        print(text.index(' $'))
-        print(text.index('$文森'))
-        print(text.index('$ 送你的'))
         emoji = [
-            {"index": 19, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": 22, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": 11, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
+            {"index": text.index('$文森'), "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
+            {"index": text.index('$ 送你的'), "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
+            {"index": text.index(' $')+1, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
         ]
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
