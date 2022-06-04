@@ -6,7 +6,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-
+import os
 
 app = Flask(__name__)
 # LINE BOT info
@@ -31,19 +31,32 @@ def callback():
         abort(400)
     return 'OK'
 
+
 # Message event
 @handler.add(MessageEvent)
 def handle_message(event):
+    temp = "交往紀念日是0722 \n \
+            以下 是 文森(aww) 送你的 五個禮物 \n \
+            1. https://chunjie100.netlify.app/(cony kiss)\n \
+            2. https://pinjie2020.netlify.app/ \n \
+            3. https://pinjie-xmas2020.netlify.app/\n \
+            4. https://vincent0628.github.io/pinjie_2021_0722/\n \
+            5. https://vincent0628.github.io/pinjie_2022_0214/\n \
+           "
     message_type = event.message.type
     user_id = event.source.user_id
     reply_token = event.reply_token
     message = event.message.text
     if message == "愛你":
         message = "愛你一萬年"
+    elif message == "你愛我嗎":
+        message = "愛你愛你 愛你一萬年!!!(heart)(heart)(heart)"
+    elif message in ["交往", "紀念日", "交往紀念日"]:
+        message = temp
+
     line_bot_api.reply_message(reply_token, TextSendMessage(text = message))
 
 
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 80))
     app.run(host='0.0.0.0', port=port)
