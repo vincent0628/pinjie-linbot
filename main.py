@@ -54,7 +54,7 @@ def handle_message(event):
             "
         print(text.index(' $'))
         print(text.index('$文森'))
-        print(text.index('$送你的 五個禮物'))
+        print(text.index('$ 送你的'))
         emoji = [
             {"index": 19, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
             {"index": 22, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
