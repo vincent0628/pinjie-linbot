@@ -42,7 +42,7 @@ def handle_message(event):
     reply_token = event.reply_token
     text = message = event.message.text
     emoji = None
-    interval = datetime.now - datetime.datetime(2020, 7, 22)
+    interval = datetime.now() - datetime.datetime(2020, 7, 22)
     if message == "愛你":
         text = "愛你一萬年"
     elif message == "你愛我嗎":
