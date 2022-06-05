@@ -7,6 +7,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import os
+import datetime
+
 
 app = Flask(__name__)
 # LINE BOT info
@@ -40,13 +42,15 @@ def handle_message(event):
     reply_token = event.reply_token
     text = message = event.message.text
     emoji = None
+    interval = datetime.now - datetime.datetime(2020,07,22)
     if message == "愛你":
         text = "愛你一萬年"
     elif message == "你愛我嗎":
         text = "愛你愛你 愛你一萬年!!!💗💗💗"
     elif message in ["交往", "紀念日", "交往紀念日"]:
         text = '\n'.join([
-            '交往紀念日是0722 $  ',
+            '交往紀念日是2020/07/22 $',
+            '距離今日'+str(interval.days+1),
             '以下是 $文森$ 送你的 五個禮物',
             '1. https://chunjie100.netlify.app/ ',
             '2. https://pinjie2020.netlify.app/',
