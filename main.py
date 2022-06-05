@@ -45,17 +45,20 @@ def handle_message(event):
     elif message == "你愛我嗎":
         text = "愛你愛你 愛你一萬年!!!💗💗💗"
     elif message in ["交往", "紀念日", "交往紀念日"]:
-        text = "交往紀念日是0722 $  \n以下是 $文森$ 送你的 五個禮物 \n \
-            1. https://chunjie100.netlify.app/ \n \
-            2. https://pinjie2020.netlify.app/ \n \
-            3. https://pinjie-xmas2020.netlify.app/\n \
-            4. https://vincent0628.github.io/pinjie_2021_0722/\n \
-            5. https://vincent0628.github.io/pinjie_2022_0214/\n \
-            "
+        text = '\n'.join([
+            '交往紀念日是0722 $  ',
+            '以下是 $文森$ 送你的 五個禮物',
+            '1. https://chunjie100.netlify.app/ ',
+            '2. https://pinjie2020.netlify.app/',
+            '3. https://pinjie-xmas2020.netlify.app/',
+            '4. https://vincent0628.github.io/pinjie_2021_0722/',
+            '5. https://vincent0628.github.io/pinjie_2022_0214/',
+        ])
+        indices = [index for index in range(len(text)) if text.startswith('$', index)]
         emoji = [
-            {"index": text.index('$文森'), "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": text.index('$ 送你的'), "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "204"},
-            {"index": text.index(' $')+1, "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
+            {"index": indices[0], "productId": "5ac21184040ab15980c9b43a", "emojiId": "010"},
+            {"index": indices[1], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
+            {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
