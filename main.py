@@ -65,8 +65,8 @@ def handle_message(event):
             {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
     elif message in ["抽"]:
-        image_url = random.choice(list(open('urls.txt')))[:-14]
-
+        image_url = random.choice(list(open('urls.txt')))[32:-19]
+        image_url = "https://drive.google.com/uc?export=view&id="+image_url
         image_message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
         
         line_bot_api.reply_message(reply_token, image_message)
