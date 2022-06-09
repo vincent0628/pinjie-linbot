@@ -8,7 +8,7 @@ from linebot.exceptions import (
 from linebot.models import *
 import os
 import datetime
-
+import random
 
 app = Flask(__name__)
 # LINE BOT info
@@ -64,6 +64,12 @@ def handle_message(event):
             {"index": indices[1], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
             {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
+    elif message in ["抽"]:
+        image_url = random.choice(list(open('urls.txt')))
+
+        image_message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
+        line_bot_api.reply_message(reply_token, image_message)
+        return
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text=text, emojis=emoji))
 
