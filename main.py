@@ -9,6 +9,7 @@ from linebot.models import *
 import os
 import datetime
 import random
+import pandas
 
 app = Flask(__name__)
 # LINE BOT info
@@ -65,8 +66,12 @@ def handle_message(event):
             {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
     elif message in ["抽"]:
-        image_url = random.choice(list(open('urls.txt')))[32:-19]
-        image_url = "https://drive.google.com/uc?export=view&id="+image_url
+        googleSheetId = '1JEbsrURmv9ZTLm-er6mlDH1AywsXho4czELpnujMhkw'
+        worksheetName = 'pinjie'
+        URL = 'https://docs.google.com/spreadsheets/d/{0}/gviz/tq?tqx=out:csv&sheet={1}'.format(googleSheetId, worksheetName)
+        df = pandas.read_csv(URL)
+        image_url_array = df[df.columns[4]].to_numpy()
+        image_url = random.choice(image_url_array)
         image_message = ImageSendMessage(original_content_url=image_url, preview_image_url=image_url)
         
         line_bot_api.reply_message(reply_token, image_message)
