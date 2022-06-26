@@ -93,7 +93,7 @@ def handle_message(event):
                 text += data[title][i]["Name"]
                 text += data[title][i]["Date"]
                 text += "\n"
-            text += "[出門看電影]"
+            title = "[出門看電影]"
             text += title + "\n"
             for i in range(len(data[title])-1):
                 text += data[title][i]["Name"]
