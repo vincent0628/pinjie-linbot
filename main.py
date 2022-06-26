@@ -71,7 +71,7 @@ def handle_message(event):
         with open('events/eat.json', 'r', encoding="utf-8") as f:
             data = json.load(f)
             for i in range(len(data["牛排"])-1):
-                text += str(i+1)
+                text += f"[{i+1}.]"
                 text += data["牛排"][i]["Name"]
                 text += data["牛排"][i]["Date"]
                 text += "\n"
@@ -81,25 +81,26 @@ def handle_message(event):
         with open('events/eat.json', 'r', encoding="utf-8") as f:
             data = json.load(f)
             for i in range(len(data["壽司"])-1):
-                text += str(i+1)
+                text += f"[{i+1}.]"
                 text += data["壽司"][i]["Name"]
                 text += data["壽司"][i]["Date"]
                 text += "\n"
         print(text)
     elif message == "電影":
+        text = ""
         with open('events/movies.json', 'r', encoding="utf-8") as f:
             data = json.load(f)
             title = "[在家看電影]"
             text += title + "\n"
             for i in range(len(data[title])-1):
-                text += str(i+1)
+                text += f"[{i+1}.]"
                 text += data[title][i]["Name"]
                 text += data[title][i]["Date"]
                 text += "\n"
             title = "[出門看電影]"
             text += title + "\n"
             for i in range(len(data[title])-1):
-                text += str(i+1)
+                text += f"[{i+1}.]"
                 text += data[title][i]["Name"]
                 text += data[title][i]["Date"]
                 text += "\n"
