@@ -71,7 +71,8 @@ def handle_message(event):
         with open('events/eat.json', 'r', encoding="utf-8") as f:
             data = json.load(f)
             for i in range(len(data["牛排"])-1):
-                text += data["牛排"][i]["Name"],data["牛排"][i]["Date"]
+                text += data["牛排"][i]["Name"]
+                text += data["牛排"][i]["Date"]
                 text += "\n"
         print(text)
 
