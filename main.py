@@ -10,6 +10,7 @@ import os
 import datetime
 import random
 import pandas
+import json 
 
 app = Flask(__name__)
 # LINE BOT info
@@ -65,6 +66,13 @@ def handle_message(event):
             {"index": indices[1], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
             {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
+    elif message == "牛排":
+        with open('events/eat.json', 'r', encoding="utf-8") as f:
+            data = json.load(f)
+            for i in range(len(data["牛排"])-1):
+                text = data["牛排"][i]["Name"],data["牛排"][i]["Date"]
+                print(data["牛排"][i]["Name"],data["牛排"][i]["Date"])
+
     elif message in ["抽"]:
         googleSheetId = '1JEbsrURmv9ZTLm-er6mlDH1AywsXho4czELpnujMhkw'
         worksheetName = 'pinjie'
