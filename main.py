@@ -1,3 +1,4 @@
+from pathlib import Path
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -20,6 +21,21 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('UaJRv37TED6+8jbkQuZkF4xq+iaadWGtQmBQiUAuCcX4r0UgCCU9F/vKyjCuu/c2mJEt2mCPkkKdEor7FHn07A0cdB5rQYhpczjh34hc8OkfVSrXdmrA75pQ/FY92yjfNA2nG0/Zk5RHbaoYUPrmJwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f0cec20f2bb7c55670631777fb606b28')
 
+def get_events(path):
+    text = ""
+    with open(path, 'r', encoding="utf-8") as f:
+        data = json.load(f)
+        print(data)
+        for key in list(data.keys()):
+            text += f"{key}\n"
+            for i in range(len(data[key])-1):
+                text += f"({i+1}.)"
+                text += data[key][i]["Date"]+'\t'
+                text += data[key][i]["Name"]
+                text += "\n"
+            text += "\n"
+    print(text)
+    return text
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -66,45 +82,12 @@ def handle_message(event):
             {"index": indices[1], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
             {"index": indices[2], "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "091"},
         ]
-    elif message == "牛排":
-        text = ""
-        with open('events/eat.json', 'r', encoding="utf-8") as f:
-            data = json.load(f)
-            for i in range(len(data["牛排"])-1):
-                text += f"[{i+1}.]"
-                text += data["牛排"][i]["Name"]
-                text += data["牛排"][i]["Date"]
-                text += "\n"
-        print(text)
-    elif message == "日本料理":
-        text = ""
-        with open('events/eat.json', 'r', encoding="utf-8") as f:
-            data = json.load(f)
-            for i in range(len(data["壽司"])-1):
-                text += f"[{i+1}.]"
-                text += data["壽司"][i]["Name"]
-                text += data["壽司"][i]["Date"]
-                text += "\n"
-        print(text)
-    elif message == "電影":
-        text = ""
-        with open('events/movies.json', 'r', encoding="utf-8") as f:
-            data = json.load(f)
-            title = "[在家看電影]"
-            text += title + "\n"
-            for i in range(len(data[title])-1):
-                text += f"[{i+1}.]"
-                text += data[title][i]["Name"]
-                text += data[title][i]["Date"]
-                text += "\n"
-            title = "[出門看電影]"
-            text += title + "\n"
-            for i in range(len(data[title])-1):
-                text += f"[{i+1}.]"
-                text += data[title][i]["Name"]
-                text += data[title][i]["Date"]
-                text += "\n"
-        print(text)
+    elif message == "吃":
+        text = get_events('events/foods.json')
+    elif message in ["電影", "movie"]:
+        text = get_events('events/movies.json')
+    elif message in ["玩"]:
+        text = get_events('events/play.json')
     elif message in ["抽"]:
         googleSheetId = '1JEbsrURmv9ZTLm-er6mlDH1AywsXho4czELpnujMhkw'
         worksheetName = 'pinjie'
