@@ -21,9 +21,10 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('UaJRv37TED6+8jbkQuZkF4xq+iaadWGtQmBQiUAuCcX4r0UgCCU9F/vKyjCuu/c2mJEt2mCPkkKdEor7FHn07A0cdB5rQYhpczjh34hc8OkfVSrXdmrA75pQ/FY92yjfNA2nG0/Zk5RHbaoYUPrmJwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f0cec20f2bb7c55670631777fb606b28')
 
+
 def get_events(path):
     text = ""
-    with open(path, 'r', encoding="utf-8") as f:
+    with open(path, 'r', encoding="utf-8-sig") as f:
         data = json.load(f)
         print(data)
         for key in list(data.keys()):
